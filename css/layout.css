@@ -1,0 +1,529 @@
+/* =========================================
+   GOOGLE FONTS
+   Fonts used for headings and body text
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+/* =========================
+   THEME VARIABLES (Lab07)
+========================= */
+/* =========================================
+   THEME VARIABLES
+   CSS variables for colours, spacing and layout
+========================================= */
+
+:root{
+  --base-color: #f6f6f6;
+  --base-variant: #ffffff;
+  --text-color: #111111;
+  --secondary-text: #555555;
+  --primary-color: #111111;
+  --accent-color: #ff3b81;
+  --section-main-color: #F9F8F6;
+  --section-secondary-color: #D9CFC7;
+  --section-third-color: #EFE9E3;
+  --header-h: 72px;
+  --radius: 16px;
+}
+
+/* Dark mode overrides
+   Activated via JavaScript toggle */
+
+.darkmode{
+  --base-color: #0f1115;
+  --base-variant: #151a22;
+  --text-color: #f2f2f2;
+  --secondary-text: #b8b8b8;
+  --primary-color: #f2f2f2;
+  --accent-color: #7cffc1;
+  --section-main-color: #060709;
+  --section-secondary-color: #263038;
+  --section-third-color: #10161c;
+}
+
+/* =========================================
+   GLOBAL STYLES
+   Base layout, typography and behaviour
+========================================= */
+
+html{
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+section{
+  scroll-snap-align: start;
+}
+
+body{
+  margin: 0;
+  background: var(--base-color);
+  color: var(--text-color);
+  padding-top: var(--header-h);
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+}
+
+h1,h2,h3{
+  letter-spacing: 0.02em;
+  margin-bottom: 0.6rem;
+}
+
+.section-lead{
+  color: var(--secondary-text);
+  max-width: 62ch;
+}
+
+.tiny-note{
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   FIXED HEADER & NAVIGATION
+   Header stays visible while scrolling
+========================================= */
+
+.site-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  z-index: 999;
+}
+.darkmode .site-header{
+  background: rgba(15,17,21,0.7);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.header-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#home-back{
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--text-color)
+}
+
+.brand-mark{
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(0,0,0,0.15);
+  font-weight: 700;
+}
+.darkmode .brand-mark{
+  border: 1px solid rgba(255,255,255,0.18);
+}
+.brand-name{
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  font-size: 0.95rem;
+}
+
+.site-nav{
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.site-nav a{
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 10px;
+}
+.site-nav a:hover{
+  background: rgba(0,0,0,0.06);
+
+}
+.darkmode .site-nav a:hover{
+  background: rgba(255,255,255,0.08);
+}
+
+/* Dark mode toggle button styles */
+.theme-switch{
+  border: 1px solid rgba(0,0,0,0.15);
+  background: var(--base-variant);
+  border-radius: 999px;
+  padding: 8px 10px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+}
+.darkmode .theme-switch{
+  border: 1px solid rgba(255,255,255,0.18);
+}
+.theme-switch svg{
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--text-color);
+  stroke-width: 2;
+}
+
+/* Sun hidden by default (light mode) */
+.theme-switch svg:last-child{ display: none; }
+/* In darkmode, show sun, hide moon */
+.darkmode .theme-switch svg:first-child{ display: none; }
+.darkmode .theme-switch svg:last-child{ display: block; }
+
+/* =========================================
+   SECTION BACKGROUNDS
+   Individual background colours per section
+========================================= */
+
+
+#home {
+    background-color: var(--section-main-color) ;
+}
+
+#collection {
+    background-color: var(--section-third-color);
+}
+
+#lookbook{
+    background-color: var(--section-main-color);
+}
+
+#materials {
+    background-color: var(--section-secondary-color);
+}
+
+#philosophy {
+    background-color: var(--section-main-color);
+}
+
+#signup{
+    background-color: var(--section-secondary-color);
+}
+
+#bts {
+    background-color:  var(--section-main-color);
+}
+
+#footer {
+    background-color:  var(--section-secondary-color);
+}
+
+h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 5em;
+}
+
+p {
+    font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5em;
+}
+
+.panel{
+  padding: 56px 0;
+}
+
+/* Keyframe animation used in hero section */
+
+
+@keyframes appear {
+  from{
+    opacity: 0.8;
+    transform: scale(0.6);
+  }
+  to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.four{
+  animation: appear linear;
+  animation-timeline: view();
+}
+
+.six:not(#except){
+  animation: appear linear;
+  animation-timeline: view();
+}
+
+
+.panel-txt{
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1em;
+  margin: 0px;
+}
+
+
+.panel:not(.panel-extra){
+  min-height: calc(100vh - var(--header-h));
+  display: flex;
+  align-items: center;
+}
+.panel-extra{
+  min-height: auto;
+}
+
+.panel-hero{ background: linear-gradient(180deg, rgba(0,0,0,0.03), transparent); }
+.darkmode .panel-hero{ background: linear-gradient(180deg, rgba(255,255,255,0.06), transparent); }
+
+.hero-copy{
+  animation: fadeUp 900ms ease both;
+}
+.hero-title{
+  font-size: 4.2rem;
+  margin: 0.2rem 0 0.8rem;
+}
+.hero-subtitle{
+  color: var(--secondary-text);
+  font-size: 1.2rem;
+  margin-bottom: 1.4rem;
+}
+.eyebrow{
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--secondary-text);
+}
+
+.hero-actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* A tiny accent animation */
+@keyframes fadeUp{
+  from{ opacity: 0; transform: translateY(14px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+/* =========================================
+   COLLECTION CARDS
+   Product cards generated via Handlebars
+========================================= */
+
+.cards-grid{
+  margin-top: 18px;
+}
+.card{
+  background: var(--base-variant);
+  border-radius: var(--radius);
+  border: 1px solid rgba(0,0,0,0.08);
+  overflow: hidden;
+  transform: translateY(0);
+  transition: transform 180ms ease;
+  margin-bottom: 18px;
+}
+.darkmode .card{
+  border: 1px solid rgba(255,255,255,0.10);
+}
+.card:hover{
+  transform: translateY(-4px);
+}
+.card-img{
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 0;
+}
+.card-body{
+  padding: 14px;
+}
+.card-title{
+  font-size: 1.35rem;
+  margin: 0 0 6px;
+}
+.card-meta{
+  color: var(--secondary-text);
+  margin: 0 0 10px;
+}
+.card-price{
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+/* =========================================
+   LOOKBOOK CAROUSEL
+   Horizontal scroll slider controlled by JS
+========================================= */
+
+.carousel{
+  position: relative;
+  margin-top: 18px;
+}
+
+.slides-container{
+  display: flex;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: var(--radius);
+}
+
+/* Hide scrollbar (optional) */
+.slides-container::-webkit-scrollbar{
+  display: none;
+}
+
+.slide{
+  width: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+/* nth-child to vary subtle overlay (Lab06) */
+.slide:nth-child(2n){
+  background: rgba(0,0,0,0.02);
+}
+.darkmode .slide:nth-child(2n){
+  background: rgba(255,255,255,0.04);
+}
+
+.slide img{
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.slide-caption{
+  margin: 10px 0 0;
+  color: var(--secondary-text);
+  text-align: center;
+}
+
+.slide-arrow{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 44px;
+  width: 60px;
+  font-size: 6em;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+.darkmode .slide-arrow{
+  border: 1px solid rgba(255,255,255,0.14);
+  color: var(--text-color);
+  border: none;
+}
+.slide-arrow:hover{
+  opacity: 0.95;
+}
+.slide-arrow-prev{ left: -15%; }
+.slide-arrow-next{ right: -12%; }
+
+/* =========================
+   ACCORDION
+========================= */
+.accordion{
+  margin-top: 14px;
+}
+.acc-btn{
+  width: 100%;
+  text-align: left;
+  background: var(--base-variant);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.darkmode .acc-btn{
+  border: 1px solid rgba(255,255,255,0.10);
+}
+.acc-panel{
+  display: none;
+  padding: 0 6px 14px 6px;
+  color: var(--secondary-text);
+}
+
+.feature-img{
+  border-radius: var(--radius);
+  border: 1px solid rgba(0,0,0,0.08);
+  height: auto;
+  max-height: 500px;
+  width: 100%;
+  margin-top: 2em;
+}
+
+
+.darkmode .feature-img{
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.bullet{
+  margin-top: 14px  ;
+}
+.bullet li{
+  color: var(--secondary-text);
+}
+
+/* Footer */
+.panel-footer{
+  padding: 28px 0;
+}
+.footer-links{
+  text-align: right;
+}
+.footer-links a{
+  color: var(--text-color);
+  text-decoration: none;
+}
+.footer-links a:hover{
+  text-decoration: underline;
+}
+
+/* =========================================
+   RESPONSIVE STYLES
+   Mobile layout adjustments
+========================================= */
+
+@media (max-width: 720px){
+  .hero-title{ font-size: 3rem; }
+  .site-nav{ display: none; } /* optional: keep simple */
+  .footer-links{ text-align: left; margin-top: 10px; }
+  .slide img{ height: 360px; }
+}
+
+#press{
+  background-color: var(--section-third-color);
+}
+
+

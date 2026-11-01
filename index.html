@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <title>Echo Form — SS26 Collection</title>
+
+  <!-- CSS frameworks (required): Normalize + Skeleton grid -->
+  <link rel="stylesheet" href="css/normalize.css" >
+  <link rel="stylesheet" href="css/skeleton.css" >
+
+  <!-- Custom CSS -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/layout.css" >
+
+  <!-- Libraries: jQuery + Handlebars (required) -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+</head>
+
+<body>
+  <!-- Fixed header: brand + navigation + theme switch -->
+  <header class="site-header">
+    <div class="container header-inner">
+       <a href="#home" id="home-back">
+        <div class="brand">
+          <span class="brand-mark">EF</span>
+          <span class="brand-name">ECHOFORM</span>
+        </div>
+      </a>
+
+      <!-- Navigation: 6 jump links to 6 sections -->
+      <nav class="site-nav">
+        <a href="#home">Home</a>
+        <a href="#collection">Collection</a>
+        <a href="#lookbook">Lookbook</a>
+        <a href="#materials">Materials</a>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#signup">Signup</a>
+      </nav>
+
+      <!-- Theme toggle: dark/light mode handled in JS -->
+      <button id="theme-switch" class="theme-switch" aria-label="Toggle theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z"></path>
+        </svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-16h0m0 20h0M4 12h0m16 0h0M5.6 5.6h0m12.8 12.8h0M18.4 5.6h0M5.6 18.4h0"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- SECTION 1: Home / Hero (fullscreen) -->
+    <section id="home" class="panel panel-hero">
+      <div class="container">
+        <div class="row">
+          <div class="seven columns hero-copy">
+            <p class="eyebrow">Spring / Summer 2026</p>
+            <h1 class="hero-title">ECHOFORM</h1>
+            <p class="hero-subtitle">
+              Minimal silhouettes. Soft structure. A collection built for movement.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="#signup">Get early access</a>
+              <a class="button" href="#collection">View collection</a>
+            </div>
+
+            <p class="tiny-note">Limited drop • Newsletter subscribers get early links</p>
+          </div>
+
+          <div class="five columns hero-image">
+            <img src="images/0a5e0f12500f3ba64b426a5efa15f626.jpg" alt="Editorial fashion portrait" >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Collection (fullscreen) - Handlebars renders product cards from JS data -->
+    <section id="collection" class="panel panel-collection panel-hold">
+      <div class="container">
+        <div class="row">
+          <div class="twelve columns">
+            <h2>Collection Highlights</h2>
+            <p class="section-lead">Hey! You can add here any of the products that you liked here to the whislist basket. Whenever you are ready you can checkout.</p>
+          </div>
+        </div>
+
+        <!-- Output target: Handlebars injects cards here -->
+        <div id="collection-placeholder" class="row cards-grid"></div>
+      </div>
+
+      <!-- Handlebars template: one product card -->
+      <script type="text/x-handlebars-template" id="collection-template">
+        {{#each products}}
+          <div class="four columns">
+            <article class="card">
+              <img class="card-img" src="images/{{image}}" alt="{{name}}">
+              <div class="card-body">
+                <h3 class="card-title">{{name}}</h3>
+                <p class="card-meta">{{category}} • {{fit}}</p>
+                <p class="card-price">{{price}}</p>
+                <button class="button u-full-width js-add-to-wishlist" data-sku="{{sku}}">
+                  Add to wishlist
+                </button>
+              </div>
+            </article>
+          </div>
+        {{/each}}
+      </script>
+    </section>
+
+    <!-- SECTION 3: Lookbook (fullscreen) - carousel controlled by JS -->
+    <section id="lookbook" class="panel panel-lookbook">
+      <div class="container">
+        <div class="row">
+          <div class="twelve columns">
+            <h2>Lookbook</h2>
+            <p class="section-lead">This is a lookbook! It's like a catlogue, here you can find core moments of the fashion week. Create your own by signing in our label!</p>
+          </div>
+        </div>
+
+        <!-- Carousel structure: arrows + scrollable slides list -->
+        <div class="carousel">
+          <button class="slide-arrow slide-arrow-prev" id="slide-arrow-prev" aria-label="Previous slide">•</button>
+          <button class="slide-arrow slide-arrow-next" id="slide-arrow-next" aria-label="Next slide">•</button>
+
+          <ul class="slides-container" id="slides-container">
+            <li class="slide"><img src="images/lookbook.jpg" alt="Look 01"></li>
+            <li class="slide"><img src="images/lookbook1.jpg" alt="Look 02"></li>
+            <li class="slide"><img src="images/21881bc2da7819ce576572a49709e0b9.jpg" alt="Look 03"></li>
+            <li class="slide"><img src="images/d5f9cfe54e41e6dda2cf77987cb75749.jpg" alt="Look 04"></li>
+            <li class="slide"><img src="images/f59de1c60208317b12da2ffd232cefa7.jpg" alt="Look 05"></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Materials (fullscreen) - jQuery accordion -->
+    <section id="materials" class="panel panel-materials">
+      <div class="container">
+        <div class="row">
+          <div class="six columns" id="except">
+            <h2>Materials</h2>
+            <p class="section-lead">We use the qualiest products that we have and they are issued a status of the best in Ireland 2025!</p>
+
+            <!-- Accordion: buttons toggle the panels (jQuery) -->
+            <div class="accordion">
+              <button class="acc-btn">Organic cotton</button>
+              <div class="acc-panel"><p class="panel-txt">Breathable, soft, and structured enough for clean lines.</p></div>
+
+              <button class="acc-btn">Recycled nylon</button>
+              <div class="acc-panel"><p class="panel-txt">Lightweight outer layers designed for movement.</p></div>
+
+              <button class="acc-btn">Tencel blend</button>
+              <div class="acc-panel"><p class="panel-txt">Silky drape for dresses and relaxed fits.</p></div>
+
+              <button class="acc-btn">Wool</button>
+              <div class="acc-panel"><p class="panel-txt">Silky drape for dresses and relaxed fits.</p></div>
+
+              <button class="acc-btn">Cashmere</button>
+              <div class="acc-panel"><p class="panel-txt">Silky drape for dresses and relaxed fits.</p></div>
+
+              <button class="acc-btn">Bamboo</button>
+              <div class="acc-panel"><p class="panel-txt">Silky drape for dresses and relaxed fits.</p></div>
+            </div>
+          </div>
+
+          <div class="six columns">
+            <img class="feature-img" src="images/6b143bdd689e13a8b13a852bc4c29d53.jpg" alt="Fabric textures" >
+            <p class="tiny-note">Tip: pick one colour family so the page looks consistent.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Philosophy (fullscreen) -->
+    <section id="philosophy" class="panel panel-philosophy">
+      <div class="container">
+        <div class="row">
+          <div class="six columns">
+            <img class="feature-img" src="images/1472327f736972d87571d4ec3533db5b.jpg" alt="Editorial fashion image" >
+          </div>
+
+          <div class="six columns">
+            <h2>Design Philosophy</h2>
+            <p class="section-lead">Less noise. Better form. Pieces that work across days and seasons.</p>
+
+            <ul class="bullet">
+              <li>Modular wardrobe (mix + repeat)</li>
+              <li>Comfort-first cuts</li>
+              <li>Quiet branding</li>
+              <li>Colour palette: neutral base + one accent</li>
+            </ul>
+
+            <a class="button" href="#signup">Join the list</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: Signup (fullscreen) - form validation in JS -->
+    <section id="signup" class="panel panel-signup">
+      <div class="container">
+        <div class="row">
+          <div class="seven columns">
+            <h2>Early Access</h2>
+            <p class="section-lead">You can easily get your application for the label. All is needed is your email! Get the drop link + lookbook PDF before launch day.</p>
+
+            <form id="signup-form" class="signup-form">
+              <label for="email">Email</label>
+              <input class="u-full-width" type="email" id="email" name="email" placeholder="name@email.com" required>
+
+              <label class="checkbox">
+                <input type="checkbox" id="invite" >
+                <span class="label-body">Also send me the Fashion Week invite</span>
+              </label>
+
+              <button class="button button-primary u-full-width" type="submit">Sign up</button>
+              <p id="form-msg" class="form-msg" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <div class="five columns">
+            <img class="feature-img" src="images/a3f8b9af996a324bca9194bef990e25b.jpg" alt="Runway image" >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: Press (extra section - not in nav) -->
+    <section id="press" class="panel panel-press">
+      <div class="container">
+        <div class="row">
+          <div class="twelve columns">
+            <h2>Press Notes</h2>
+            <p class="section-lead">
+              A few words from editors and stylists on the SS26 drop — minimal form, refined comfort, quiet luxury.
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="four columns">
+            <div class="card">
+              <div class="card-body">
+                <p class="panel-txt">“A restrained collection that feels modern without trying too hard.”</p>
+                <p class="tiny-note">— Editorial, The Minimal Review</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="four columns">
+            <div class="card">
+              <div class="card-body">
+                <p class="panel-txt">“Soft structure and clean lines — perfect for a modular wardrobe.”</p>
+                <p class="tiny-note">— Stylist Notes</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="four columns">
+            <div class="card">
+              <div class="card-body">
+                <p class="panel-txt">“The palette is calm, the cuts are confident — it photographs beautifully.”</p>
+                <p class="tiny-note">— Studio Diary</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:16px;">
+          <div class="six columns"><img class="feature-img" src="images/press1.jpg" alt="Magazine layout mood" ></div>
+          <div class="six columns"><img class="feature-img" src="images/press2.jpg" alt="Editorial moodboard" ></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: BTS (extra section - not in nav) -->
+    <section id="bts" class="panel panel-bts panel-extra">
+      <div class="container">
+        <div class="row">
+          <div class="twelve columns">
+            <h2>Behind the Scenes</h2>
+            <p class="section-lead">Massimo Dutti backstage content offers a glimpse into the brand's fashion shows, focusing on the elegant, "quiet luxury" aesthetic with behind-the-scenes photos, makeup details, and interviews with models/talent (like Jenny Walton) on their social media (Instagram, Facebook</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="six columns"><img class="feature-img" src="images/cc2c69801867b43c3cff754968d2653f.jpg" alt="Behind the scenes 01" ></div>
+          <div class="six columns"><img class="feature-img" src="images/2ca88cba83d1d56d09b5cecb0d0de214.jpg" alt="Behind the scenes 02" ></div>
+          <div class="six columns"><img class="feature-img" src="images/backscenes3.jpg" alt="Behind the scenes 03" ></div>
+          <div class="six columns"><img class="feature-img" src="images/backscenes4.jpg" alt="Behind the scenes 04" ></div>
+          <div class="six columns"><img class="feature-img" src="images/backscenes45.jpg" alt="Behind the scenes 05" ></div>
+          <div class="six columns"><img class="feature-img" src="images/backscenes6.jpg" alt="Behind the scenes 06" ></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer: extra area for credits + back-to-top link -->
+    <section id="footer" class="panel panel-footer panel-extra">
+      <div class="container">
+        <div class="row">
+          <div class="six columns">
+            <p><strong>ECHOFORM</strong> — SS26 Collection</p>
+            <p class="tiny-note">All text is original. Images sourced for educational use.</p>
+          </div>
+          <div class="six columns footer-links">
+            <a href="#home">Back to top</a>
+            <span>•</span>
+            <a href="#signup">Signup</a>
+            <span>•</span>
+            <a href="#">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Main JS file: theme toggle, Handlebars render, carousel, accordion, form validation -->
+  <script src="js/app.js"></script>
+</body>
+</html>
